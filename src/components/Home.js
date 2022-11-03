@@ -19,10 +19,14 @@ const Home = () => {
         getResults()
     }, [])
 
+
+    // Getting current page number
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = productsLists.slice(indexOfFirstProduct, indexOfLastProduct);
 
+
+    // Changing page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
