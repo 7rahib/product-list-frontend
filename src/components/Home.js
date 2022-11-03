@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { HiSearch } from "react-icons/hi";
+import Product from './Product';
 import axios from "axios";
-import ProductListRow from './ProductListRow';
+import Pagination from './Pagination';
 
 const Home = () => {
 
     const [productsLists, setProductLists] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(8);
 
     useEffect(() => {
         async function getResults() {
@@ -15,7 +18,11 @@ const Home = () => {
         getResults()
     }, [])
 
-    console.log(productsLists);
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productsLists.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <div >
@@ -37,21 +44,12 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <div>
-                    <section className="text-gray-600 body-font">
-                        <div className="container px-5 mx-auto">
-                            <div className="flex flex-wrap -m-4">
-                                {
-                                    productsLists?.map((productsList) => <ProductListRow
-                                        key={productsList.id}
-                                        productsList={productsList}
-                                    >
-                                    </ProductListRow>)
-                                }
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                <Product products={currentProducts} />
+                <Pagination
+                    productsPerPage={productsPerPage}
+                    totalProducts={productsLists.length}
+                    paginate={paginate}
+                />
             </div>
         </div>
     );
