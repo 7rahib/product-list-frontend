@@ -8,11 +8,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     }
 
     return (
-        <div className='flex justify-center'>
+        <div className='container'>
             <nav className='mt-5 mb-5'>
-                <div className='btn-group'>
+                <div className='btn-group flex flex-wrap'>
                     {pageNumbers?.map(number => (
-                        <a onClick={() => paginate(number)} href='!#' className='btn'>
+                        <a onClick={() => paginate(number)} href='!#' className='btn btn-sm btn-ghost'>
                             {number}
                         </a>
                     ))}

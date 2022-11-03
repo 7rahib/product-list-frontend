@@ -9,7 +9,7 @@ const Home = () => {
     const [searchProducts, setSearchProducts] = useState("");
     const [productsLists, setProductLists] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(8);
+    const [productsPerPage] = useState(12);
 
     useEffect(() => {
         async function getResults() {
@@ -29,7 +29,7 @@ const Home = () => {
         <div >
             <div className='mt-12 ml-8'>
                 <h1 className='text-4xl font-mono text-gray-900'>Hello,</h1>
-                <h3 className='text-2xl font-mono text-gray-700'>This is all the construction products list</h3>
+                <h3 className='text-2xl font-mono text-gray-700'>This are all the construction products</h3>
                 <h4 className='ml-1 font-mono text-gray-400'>You can search by name if you want to</h4>
             </div>
             <div className='ml-6'>
