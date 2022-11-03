@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 
 const Home = () => {
 
+    const [searchProducts, setSearchProducts] = useState("");
     const [productsLists, setProductLists] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(8);
@@ -29,7 +30,7 @@ const Home = () => {
             <div className='mt-12 ml-8'>
                 <h1 className='text-4xl font-mono text-gray-900'>Hello,</h1>
                 <h3 className='text-2xl font-mono text-gray-700'>This is all the construction products list</h3>
-                <h4 className='ml-1 font-mono text-gray-400'>You can search by name if you want</h4>
+                <h4 className='ml-1 font-mono text-gray-400'>You can search by name if you want to</h4>
             </div>
             <div className='ml-6'>
                 <div className="rounded-lg overflow-hidden md:max-w-xl">
@@ -37,14 +38,15 @@ const Home = () => {
                         <div className="w-full p-3">
                             <div className="relative">
                                 <HiSearch className='absolute fa fa-search text-gray-400 top-5 left-4' />
-                                <input type="text" className="bg-gray-300 h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer" name="" />
-                                <button className='absolute top-4 right-3 btn btn-xs btn-primary'>Search</button>
+                                <input type="text" className="bg-gray-300 h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
+                                    onChange={(e) => { setSearchProducts(e.target.value) }}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="divider"></div>
-                <Product products={currentProducts} />
+                <Product products={currentProducts} searchProducts={searchProducts} />
                 <Pagination
                     productsPerPage={productsPerPage}
                     totalProducts={productsLists.length}

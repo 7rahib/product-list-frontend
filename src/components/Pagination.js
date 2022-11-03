@@ -11,7 +11,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
         <div className='flex justify-center'>
             <nav className='mt-5 mb-5'>
                 <div className='btn-group'>
-                    {pageNumbers.map(number => (
+                    {pageNumbers?.map(number => (
                         <a onClick={() => paginate(number)} href='!#' className='btn'>
                             {number}
                         </a>
